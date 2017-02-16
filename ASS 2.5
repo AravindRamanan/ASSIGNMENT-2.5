@@ -4,6 +4,7 @@ Group of independent servers (usually in close proximity to one another) interco
 
 HADOOP CLUSTER:
 * A Hadoop cluster is a special type of computational cluster designed specifically for storing and analyzing huge amounts of unstructured data in a distributed computing environment. 
+* Hadoop cluster is a collection of racks.
 
 BENEFITS:
 
@@ -24,3 +25,26 @@ Hadoop's unique storage method is based on a distributed file system that basica
 A key advantage of using Hadoop is its fault tolerance. When data is sent to an individual node, that data is also replicated to other nodes in the cluster, which means that in the event of failure, there is another copy available for use.
 
 2)RACK:
+          * Rack in hadoop consists of a name node and a job tracker , n number of data nodes and task tracker and a Rack switch.
+          * Hadoop master daemons obtain the rack id of the cluster slaves by invoking either an external script or java class as specified by configuration files.
+          * Hadoop Rack is a set of 30 or 40 nodes physically stored close together. 
+          * These nodes are connected to the same network using a switch. 
+          * Similarly Hadoop cluster is a collection of racks.
+
+RACK ARRANGEMENT IN HADOOP:
+        
+          
+          * Rack consists of a name node and a job tracker , n number of data nodes and task tracker and a Rack switch.
+          
+For example
+
+          if there are 4500 nodes,typical hadoop cluster setup would contain
+* 110 different racks
+* Each rack would have around 40 slave machine
+* At the top of each rack there is a rack switch
+* Each slave machine(rack server in a rack) has cables coming out it from both the ends
+* Cables are connected to rack switch at the top which means that top rack switch will have around 80 ports
+* There are global 8 core switches
+* The rack switch has uplinks connected to core switches and hence connecting all other racks with uniform bandwidth, forming the Cluster
+* In the cluster, you have few machines to act as Name node and as JobTracker. They are referred as Masters. These masters have different configuration favoring more DRAM and CPU and less local storage.
+* The majority of the machines acts as DataNode and Task Trackers and are referred as Slaves. These slave nodes have lots of local disk storage and moderate amounts of CPU and DRAM
